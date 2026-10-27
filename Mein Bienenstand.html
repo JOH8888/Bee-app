@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mein Bienenstand</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#fbf8f2;--card:#f5ebdd;--line:#e6d8c4;--ink:#3a2417;--mut:#8a6d5a;--amb:#d97706;--hi:#ffe58a;--hl:#7a3e06;--grn:#4f7a3a;--red:#a8432b;--hd:'Libre Baskerville',Georgia,serif;--bd:'Hanken Grotesk',system-ui,sans-serif;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1f1710;--card:#2c2118;--line:#443426;--ink:#f3e7d6;--mut:#b99d85;--amb:#f0a030;--hi:#5a4416;--hl:#ffd98a;--grn:#8fc07a;--red:#e58a73}}
+:root[data-theme="dark"]{--bg:#1f1710;--card:#2c2118;--line:#443426;--ink:#f3e7d6;--mut:#b99d85;--amb:#f0a030;--hi:#5a4416;--hl:#ffd98a;--grn:#8fc07a;--red:#e58a73}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:500 16px/1.4 var(--bd)}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer;border:0}
+:focus-visible{outline:3px solid var(--amb);outline-offset:2px}
+.app{max-width:560px;margin:0 auto;padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+h1,h2,h3{font-family:var(--hd);margin:0}
+.hero{background:linear-gradient(160deg,#c9780f,#e8a31f);padding:70px 20px 22px;color:#fff;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.34V17.9l-11-6.34L3 17.9z' fill='none' stroke='%23fff' stroke-opacity='.3' stroke-width='1.5'/%3E%3C/svg%3E"),linear-gradient(160deg,#c9780f,#e8a31f)}
+.hero small{color:#ffe58a;font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:13px}
+.hero h1{font-size:40px;margin:2px 0 4px}
+.top{background:var(--card);border-bottom:1px solid var(--line);padding:18px 16px 10px;display:flex;align-items:center;gap:8px}
+.top h1{font-size:26px}.top h2{font-size:24px}
+.pad{padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:14px;width:100%;text-align:left;display:block}
+.hlc{background:var(--hi);border-color:#e9c34a}
+.hlc .lb{color:var(--hl)}
+.lb{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.big{font:700 44px/1.1 var(--hd);margin:4px 0}
+.mut{color:var(--mut);font-size:14px}
+.row{display:flex;gap:12px;align-items:center}.sp{justify-content:space-between}.row>*{flex:1}
+.vk{display:flex;gap:14px;align-items:center}
+.vk .ic{flex:none;width:52px;height:52px;border-radius:14px;background:var(--hi);color:var(--hl);display:grid;place-items:center}
+.vk h3{font-size:20px}.vk>div{flex:1;min-width:0}
+.vk hr{border:0;border-top:1px solid var(--line);margin:12px 0 10px}
+.b1,.b2{border-radius:16px;padding:15px;font-weight:700;display:flex;gap:8px;align-items:center;justify-content:center}
+.b1{background:var(--amb);color:#fff}.b2{background:var(--line);color:var(--ink)}
+.seg{display:flex;background:var(--line);border-radius:14px;padding:4px;margin:10px 0 16px;gap:4px}
+.seg button{flex:1;padding:11px 6px;border-radius:11px;background:none;font-weight:700;font-size:15px}
+.seg .on{background:var(--amb);color:#fff}
+.it{display:flex;gap:12px;align-items:center}.it>div{flex:1;min-width:0}
+.it b{display:block;overflow:hidden;text-overflow:ellipsis}
+.pos{color:var(--grn);font-weight:700}.neg{color:var(--red);font-weight:700}
+.chip{display:inline-block;background:var(--hi);color:var(--hl);border-radius:99px;padding:3px 11px;font-size:13px;font-weight:700;margin:2px 4px 2px 0}
+.chip.g{background:none;border:1px solid var(--line);color:var(--mut)}
+.fab{position:fixed;bottom:calc(86px + env(safe-area-inset-bottom,0px));right:max(16px,calc(50% - 264px));width:58px;height:58px;border-radius:50%;background:var(--amb);color:#fff;display:grid;place-items:center;box-shadow:0 4px 14px #0004}
+nav{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+nav div{max-width:560px;margin:auto;display:flex}
+nav button{flex:1;background:none;padding:10px 0 9px;color:var(--mut);font-size:13px;font-weight:600;display:grid;justify-items:center;gap:2px}
+nav .on{color:var(--amb);font-weight:700}
+.back{background:none;color:var(--amb);padding:4px 6px}
+.stp{display:flex;align-items:center;gap:6px;background:var(--line);border-radius:12px;padding:6px 10px}
+.stp button{background:none;font-size:24px;width:34px;color:var(--ink)}
+.td{display:flex;gap:12px;align-items:flex-start}
+.td input{width:22px;height:22px;accent-color:var(--amb);margin-top:2px}
+.td.done span{text-decoration:line-through;color:var(--mut)}
+.note{white-space:pre-wrap;margin:6px 0 0}
+.emp{color:var(--mut);text-align:center;padding:26px 10px}
+#m{position:fixed;inset:0;background:#0007;display:flex;align-items:flex-end;justify-content:center;z-index:9}
+#m[hidden]{display:none}
+.sh{background:var(--bg);width:100%;max-width:560px;max-height:92%;overflow:auto;border-radius:22px 22px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom,0px))}
+.sh h2{margin-bottom:12px;font-size:22px}
+label{display:block;font-size:14px;font-weight:600;color:var(--mut);margin-bottom:12px}
+input,select,textarea{display:block;width:100%;margin-top:4px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px;font-size:16px;color:var(--ink)}
+.dl{background:none;color:var(--red);font-weight:700;width:100%;padding:14px 0 0}
+</style></head>
+<body>
+<div class="app" id="main"></div>
+<nav><div id="nav"></div></nav>
+<div id="m" hidden></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>Math.random().toString(36).slice(2,9);
+const today=()=>new Date().toISOString().slice(0,10);
+const fd=d=>d?d.split('-').reverse().join('.'):'';
+const nf=(n,d=1)=>Number(n||0).toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d});
+const eur=n=>Number(n||0).toLocaleString('de-DE',{style:'currency',currency:'EUR'});
+const I={box:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>',drop:'<path d="M12 3s6 6.5 6 11a6 6 0 01-12 0c0-4.5 6-11 6-11z"/>',cash:'<rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/>',tool:'<path d="M14 6a4 4 0 005 5l-9 9-3-3 9-9z"/>',plus:'<path d="M12 5v14M5 12h14"/>',back:'<path d="M15 5l-7 7 7 7"/>',next:'<path d="M9 5l7 7-7 7"/>'};
+const ic=(n,s=24)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${I[n]}</svg>`;
+const KEY='bienenstand-v1';let S=null;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!S)S={volker:[{id:uid(),name:'01',standort:'Gemüsegarten',kJahr:'',kFarbe:'',notiz:'',durch:[],mass:[],todo:[]},{id:uid(),name:'02',standort:'Gemüsegarten',kJahr:'',kFarbe:'',notiz:'',durch:[],mass:[],todo:[]}],ernten:[],verk:[],buch:[],auftr:[],material:[{id:uid(),name:'Gläser 500 g',kat:'Gläser',menge:60}]};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+let v={tab:'volker',vid:null,seg:{honig:'e',geld:'ein',vk:'karte'}};
+const sum=(a,k)=>a.reduce((s,x)=>s+(+x[k]||0),0);
+const volk=()=>S.volker.find(x=>x.id===v.vid);
+const H=()=>{const e=sum(S.ernten,'kg'),s=sum(S.verk,'glaeser')*.5,b=e-s;return{e,s,b,g:Math.floor(b/.5+1e-9),res:sum(S.auftr.filter(a=>a.status!=='erledigt'),'glaeser')}};
+const seg=(g,o)=>`<div class="seg">${o.map(([k,l])=>`<button class="${v.seg[g]===k?'on':''}" data-a="seg" data-i="${g}" data-j="${k}">${l}</button>`).join('')}</div>`;
+const fab=(l,t)=>`<button class="fab" aria-label="${t}" data-a="add" data-i="${l}">${ic('plus',28)}</button>`;
+const emp=t=>`<div class="emp">${t}</div>`;
+
+function listV(){return `<div class="hero"><small>Mein Bienenstand</small><h1>Völker</h1><div>${S.volker.length} aktive Völker</div></div><div class="pad">${S.volker.map(x=>{const d=x.durch[0],t=x.todo.filter(y=>!y.done);
+return `<button class="card vk" style="display:block" data-a="open" data-i="${x.id}"><div class="vk"><span class="ic">${ic('box',28)}</span><div><h3>${esc(x.name)}</h3><span class="mut">${esc(x.standort)}</span></div>${ic('next',20)}</div><hr style="border:0;border-top:1px solid var(--line);margin:12px 0 10px"><div class="mut">${d?`Letzte Durchsicht ${fd(d.datum)}${d.staerke?` · ${d.staerke} Waben besetzt`:''}`:'Noch keine Durchsicht'}</div>${t.length?`<div style="margin-top:6px"><span class="chip">${t.length} offen</span> ${esc(t[0].text)}</div>`:''}</button>`}).join('')}${S.volker.length?'':emp('Noch kein Volk angelegt.')}</div>${fab('volker','Volk hinzufügen')}`}
+
+function detail(){const x=volk();const s=v.seg.vk;let b='';
+if(s==='karte')b=`<button class="b1" style="width:100%;margin-bottom:14px" data-a="add" data-i="durch">${ic('plus',20)} Durchsicht eintragen</button>`+(x.durch.map(d=>`<button class="card" data-a="edit" data-i="durch" data-j="${d.id}"><b>${fd(d.datum)}</b><div style="margin:6px 0">${d.staerke!==''?`<span class="chip">${d.staerke} Waben besetzt</span>`:''}${d.brut?`<span class="chip">${esc(d.brut)}</span>`:''}${d.sanft?`<span class="chip g">Sanftmut: ${esc(d.sanft)}</span>`:''}${d.wz&&d.wz!=='keine'?`<span class="chip g">Weiselzellen: ${esc(d.wz)}</span>`:''}${d.futter!==''?`<span class="chip g">Futter ${nf(d.futter)} kg</span>`:''}${d.varroa!==''?`<span class="chip g">Varroa ${nf(d.varroa)}/Tag</span>`:''}</div>${d.notiz?`<p class="note">${esc(d.notiz)}</p>`:''}</button>`).join('')||emp('Noch keine Durchsicht in der Stockkarte.'));
+if(s==='mass')b=`<button class="b1" style="width:100%;margin-bottom:14px" data-a="add" data-i="mass">${ic('plus',20)} Gemacht: Eintrag</button>`+(x.mass.map(m=>`<button class="card" data-a="edit" data-i="mass" data-j="${m.id}"><b>${fd(m.datum)}</b><p class="note">${esc(m.text)}</p></button>`).join('')||emp('Hier steht, was du bei diesem Volk gemacht hast.'));
+if(s==='todo')b=`<button class="b1" style="width:100%;margin-bottom:14px" data-a="add" data-i="todo">${ic('plus',20)} Aufgabe hinzufügen</button>`+(x.todo.map(t=>`<div class="card td ${t.done?'done':''}"><input type="checkbox" aria-label="erledigt" ${t.done?'checked':''} data-a="tgl" data-j="${t.id}"><span style="flex:1">${esc(t.text)}</span><button class="back" data-a="edit" data-i="todo" data-j="${t.id}">Ändern</button></div>`).join('')||emp('Nichts zu tun. Trage ein, was als Nächstes bei diesem Volk ansteht.'));
+return `<div class="top"><button class="back" data-a="back" aria-label="Zurück">${ic('back')}</button><div style="flex:1"><h2>Volk ${esc(x.name)}</h2><span class="mut">${esc(x.standort)}</span></div><button class="back" data-a="edit" data-i="volker" data-j="${x.id}">Ändern</button></div><div class="pad"><div class="card hlc"><span class="lb">Königin</span><div style="font:700 20px var(--hd);margin-top:4px">${x.kJahr?`Jahrgang ${x.kJahr}`:'Noch nicht erfasst'}${x.kFarbe?` · ${esc(x.kFarbe)}`:''}</div>${x.notiz?`<p class="note">${esc(x.notiz)}</p>`:''}</div>${seg('vk',[['karte','Stockkarte'],['mass','Gemacht'],['todo','To-do ('+x.todo.filter(t=>!t.done).length+')']])}${b}</div>`}
+
+function honigV(){const h=H();const l=v.seg.honig==='e'?(S.ernten.slice().sort((a,b)=>b.datum.localeCompare(a.datum)).map(e=>`<button class="card it" data-a="edit" data-i="ernten" data-j="${e.id}"><span style="color:var(--amb)">${ic('drop')}</span><div><b>${esc(e.sorte)}</b><span class="mut">${fd(e.datum)} · ${esc(e.volk||'Alle Völker')}</span></div><span class="pos">+${nf(e.kg)} kg</span></button>`).join('')||emp('Noch keine Ernte erfasst.')):(S.verk.slice().sort((a,b)=>b.datum.localeCompare(a.datum)).map(e=>`<button class="card it" data-a="edit" data-i="verk" data-j="${e.id}"><span style="color:var(--amb)">${ic('cash')}</span><div><b>${e.glaeser} Gläser${e.kunde?' · '+esc(e.kunde):''}</b><span class="mut">${fd(e.datum)} · ${eur(e.glaeser*e.preis)}</span></div><span class="neg">−${nf(e.glaeser*.5)} kg</span></button>`).join('')||emp('Noch kein Verkauf erfasst.'));
+return `<div class="top"><h1>Honig</h1></div><div class="pad"><div class="card hlc"><span class="lb">Aktueller Honigbestand</span><div class="row sp" style="align-items:flex-end"><div><div class="big">${nf(h.b)} kg</div></div><div style="text-align:right"><div class="big" style="font-size:34px">${h.g}</div><div style="color:var(--hl);font-weight:700">Gläser à 500 g</div></div></div><div class="mut" style="color:var(--hl)">Geerntet ${nf(h.e)} kg · Verkauft ${nf(h.s)} kg${h.res?` · ${h.res} Gläser für offene Aufträge`:''}</div></div><div class="row" style="margin-bottom:18px"><button class="b1" data-a="add" data-i="ernten">${ic('plus',20)} Ernte</button><button class="b2" data-a="add" data-i="verk">${ic('cash',20)} Verkauf</button></div><span class="lb">Verlauf</span>${seg('honig',[['e','Ernten'],['v','Verkäufe']])}${l}</div>`}
+
+function geldV(){const y=String(new Date().getFullYear()),s=v.seg.geld,B=S.buch.filter(b=>b.datum.startsWith(y)),ei=sum(B.filter(b=>b.typ==='ein'),'betrag'),au=sum(B.filter(b=>b.typ==='aus'),'betrag');let l='';
+if(s==='auf')l=S.auftr.slice().sort((a,b)=>(a.status==='erledigt')-(b.status==='erledigt')||(a.faellig||'9').localeCompare(b.faellig||'9')).map(a=>`<div class="card"><button class="it" style="background:none;width:100%;text-align:left" data-a="edit" data-i="auftr" data-j="${a.id}"><div><b>${esc(a.kunde)}</b><span class="mut">${a.glaeser} Gläser × ${eur(a.preis)} = ${eur(a.glaeser*a.preis)}${a.faellig?' · bis '+fd(a.faellig):''}</span></div><span class="chip ${a.status==='erledigt'?'g':''}">${a.status==='erledigt'?'Erledigt':'Offen'}</span></button>${a.notiz?`<p class="note">${esc(a.notiz)}</p>`:''}${a.status!=='erledigt'?`<button class="b1" style="margin-top:12px;width:100%" data-a="done" data-j="${a.id}">Geliefert: als Verkauf buchen</button>`:''}</div>`).join('')||emp('Noch kein Auftrag gespeichert.');
+else l=S.buch.filter(b=>b.typ===s).sort((a,b)=>b.datum.localeCompare(a.datum)).map(b=>`<button class="card it" data-a="edit" data-i="buch" data-j="${b.id}"><span style="color:var(--amb)">${ic(b.ref?'drop':'cash')}</span><div><b>${esc(b.titel)}</b><span class="mut">${fd(b.datum)} · ${esc(b.kat)}</span></div><span class="${s==='ein'?'pos':'neg'}">${s==='ein'?'':'−'}${eur(b.betrag)}</span></button>`).join('')||emp(s==='ein'?'Noch keine Einnahmen.':'Noch keine Ausgaben.');
+return `<div class="top"><h1>Finanzen</h1></div><div class="pad"><div class="card"><span class="lb">${y}</span><div class="big">${eur(ei-au)}</div><div class="mut">Gewinn</div><div style="margin-top:8px"><span class="chip">Einnahmen ${eur(ei)}</span><span class="chip g">Ausgaben ${eur(au)}</span></div></div>${seg('geld',[['ein','Einnahmen'],['aus','Ausgaben'],['auf','Aufträge']])}${l}</div>${fab(s==='auf'?'auftr':s,'Hinzufügen')}`}
+
+function matV(){return `<div class="top"><h1>Material</h1></div><div class="pad">${S.material.map(m=>`<div class="card it"><button style="background:none;text-align:left;flex:1;min-width:0" data-a="edit" data-i="material" data-j="${m.id}"><b style="font:700 19px var(--hd)">${esc(m.name)}</b><span class="mut">${esc(m.kat)}</span></button><div class="stp"><button aria-label="weniger" data-a="mat" data-i="${m.id}" data-j="-1">−</button><b>${m.menge}</b><span class="mut">Stk</span><button aria-label="mehr" data-a="mat" data-i="${m.id}" data-j="1">+</button></div></div>`).join('')||emp('Noch kein Material erfasst.')}</div>${fab('material','Material hinzufügen')}`}
+
+function draw(){const t=v.tab;$('#main').innerHTML=t==='volker'?(v.vid&&volk()?detail():listV()):t==='honig'?honigV():t==='geld'?geldV():matV();
+$('#nav').innerHTML=[['volker','Völker','box'],['honig','Honig','drop'],['geld','Finanzen','cash'],['material','Material','tool']].map(([k,l,i])=>`<button class="${t===k?'on':''}" data-a="tab" data-i="${k}" ${t===k?'aria-current="page"':''}>${ic(i)}${l}</button>`).join('')}
+
+function form(t,f,ok,del){const m=$('#m');m.innerHTML=`<div class="sh" role="dialog" aria-label="${esc(t)}"><h2>${esc(t)}</h2>${f.map(x=>`<label>${x.l}${x.t==='area'?`<textarea name="${x.k}" rows="4">${esc(x.v)}</textarea>`:x.t==='sel'?`<select name="${x.k}">${x.o.map(o=>`<option${o==x.v?' selected':''}>${esc(o)}</option>`).join('')}</select>`:`<input name="${x.k}" type="${x.t||'text'}" ${x.t==='number'?'step="any" min="0" inputmode="decimal"':''} value="${esc(x.v)}" ${x.r?'required':''}>`}</label>`).join('')}<div class="row"><button class="b2" id="no">Abbrechen</button><button class="b1" id="ok">Speichern</button></div>${del?'<button class="dl" id="dl">Löschen</button>':''}</div>`;m.hidden=false;
+const close=()=>{m.hidden=true;m.innerHTML=''};$('#no').onclick=close;
+$('#ok').onclick=()=>{const o={};let bad=null;m.querySelectorAll('[name]').forEach(i=>{o[i.name]=i.value.trim();if(i.required&&!o[i.name]&&!bad)bad=i});if(bad){bad.focus();return}ok(o);save();close();draw()};
+if(del)$('#dl').onclick=()=>{del();save();close();draw()}}
+
+const K=['kg','glaeser','preis','betrag','menge','staerke','futter','varroa','kJahr'];
+const SB=['Honigverkauf','Sonstiges'],KA=['Material','Gläser & Etiketten','Futter','Behandlung','Ausrüstung','Sonstiges'];
+const SC={
+volker:o=>[{k:'name',l:'Name / Nummer',v:o.name,r:1},{k:'standort',l:'Standort',v:o.standort},{k:'kJahr',l:'Königin: Jahrgang',t:'number',v:o.kJahr},{k:'kFarbe',l:'Königin: Zeichenfarbe / Herkunft',v:o.kFarbe},{k:'notiz',l:'Notiz zum Volk',t:'area',v:o.notiz}],
+durch:o=>[{k:'datum',l:'Datum',t:'date',v:o.datum,r:1},{k:'staerke',l:'Waben besetzt',t:'number',v:o.staerke},{k:'brut',l:'Brut',t:'sel',o:['Stifte und Brut','Brut, keine Stifte','Keine Brut'],v:o.brut},{k:'wz',l:'Weiselzellen',t:'sel',o:['keine','Spielnäpfchen','Schwarmzellen','Nachschaffungszellen'],v:o.wz},{k:'sanft',l:'Sanftmut',t:'sel',o:['sehr sanft','sanft','etwas stichig','aggressiv'],v:o.sanft},{k:'futter',l:'Futter (kg)',t:'number',v:o.futter},{k:'varroa',l:'Varroa-Fall pro Tag',t:'number',v:o.varroa},{k:'notiz',l:'Notiz',t:'area',v:o.notiz}],
+mass:o=>[{k:'datum',l:'Datum',t:'date',v:o.datum,r:1},{k:'text',l:'Was habe ich gemacht?',t:'area',v:o.text,r:1}],
+todo:o=>[{k:'text',l:'Was muss noch gemacht werden?',t:'area',v:o.text,r:1}],
+ernten:o=>[{k:'datum',l:'Datum',t:'date',v:o.datum,r:1},{k:'sorte',l:'Sorte',v:o.sorte,r:1},{k:'kg',l:'Menge (kg)',t:'number',v:o.kg,r:1},{k:'volk',l:'Von Volk',t:'sel',o:['Alle Völker',...S.volker.map(x=>x.name)],v:o.volk}],
+verk:o=>[{k:'datum',l:'Datum',t:'date',v:o.datum,r:1},{k:'glaeser',l:'Gläser (500 g)',t:'number',v:o.glaeser,r:1},{k:'preis',l:'Preis pro Glas (€)',t:'number',v:o.preis,r:1},{k:'kunde',l:'Kunde (optional)',v:o.kunde}],
+buch:o=>[{k:'datum',l:'Datum',t:'date',v:o.datum,r:1},{k:'titel',l:'Bezeichnung',v:o.titel,r:1},{k:'betrag',l:'Betrag (€)',t:'number',v:o.betrag,r:1},{k:'kat',l:'Kategorie',t:'sel',o:o.typ==='ein'?SB:KA,v:o.kat}],
+auftr:o=>[{k:'kunde',l:'Kunde / Auftrag',v:o.kunde,r:1},{k:'glaeser',l:'Gläser (500 g)',t:'number',v:o.glaeser,r:1},{k:'preis',l:'Preis pro Glas (€)',t:'number',v:o.preis,r:1},{k:'faellig',l:'Fällig am',t:'date',v:o.faellig},{k:'notiz',l:'Notiz',t:'area',v:o.notiz}],
+material:o=>[{k:'name',l:'Bezeichnung',v:o.name,r:1},{k:'kat',l:'Kategorie',v:o.kat},{k:'menge',l:'Menge (Stk)',t:'number',v:o.menge,r:1}]};
+const TI={volker:'Volk',durch:'Durchsicht',mass:'Eintrag',todo:'Aufgabe',ernten:'Ernte',verk:'Verkauf',buch:'Buchung',auftr:'Auftrag',material:'Material'};
+const DEF=l=>({volker:{standort:'Gemüsegarten'},durch:{datum:today(),staerke:'',brut:'Stifte und Brut',wz:'keine',sanft:'sanft',futter:'',varroa:''},mass:{datum:today()},ernten:{datum:today(),sorte:'Blütenhonig',volk:'Alle Völker'},verk:{datum:today()},buch:{datum:today(),kat:'Material'},auftr:{},material:{kat:'Gläser',menge:1}}[l]||{});
+const arr=l=>['durch','mass','todo'].includes(l)?volk()[l]:S[l];
+function sync(it){S.buch=S.buch.filter(b=>b.ref!==it.id);S.buch.push({id:uid(),typ:'ein',datum:it.datum,titel:`Honigverkauf ${it.glaeser} Gläser${it.kunde?' · '+it.kunde:''}`,betrag:it.glaeser*it.preis,kat:'Honigverkauf',ref:it.id})}
+function ed(l,id,extra){const a=arr(l),it=id?a.find(x=>x.id===id):{...DEF(l),...extra};
+form((id?'Bearbeiten: ':'Neu: ')+TI[l],SC[l](it),o=>{K.forEach(k=>{if(k in o)o[k]=o[k]===''?'':+o[k]});if(id)Object.assign(it,o);else{Object.assign(it,o,{id:uid()});if(['durch','mass'].includes(l))a.unshift(it);else a.push(it);if(l==='todo')it.done=false;if(l==='auftr')it.status='offen'}
+if(l==='verk')sync(it);if(l==='mass'||l==='durch')a.sort((x,y)=>y.datum.localeCompare(x.datum))},
+id?()=>{const i=a.findIndex(x=>x.id===id);a.splice(i,1);if(l==='verk')S.buch=S.buch.filter(b=>b.ref!==id)}:null)}
+const A={
+tab:i=>{v.tab=i;v.vid=null},seg:(i,j)=>{v.seg[i]=j},open:i=>{v.vid=i;v.seg.vk='karte'},back:()=>{v.vid=null},
+add:l=>ed(l,null,l==='buch'?{typ:'ein'}:l==='ein'||l==='aus'?null:{}),
+edit:(l,id)=>{if(l==='buch'){const b=S.buch.find(x=>x.id===id);if(b.ref)return ed('verk',b.ref)}ed(l,id)},
+tgl:(i,j)=>{const t=volk().todo.find(x=>x.id===j);t.done=!t.done;if(t.done)volk().mass.unshift({id:uid(),datum:today(),text:'Erledigt: '+t.text});save()},
+done:(i,j)=>{const a=S.auftr.find(x=>x.id===j);const s={id:uid(),datum:today(),glaeser:a.glaeser,preis:a.preis,kunde:a.kunde};S.verk.push(s);sync(s);a.status='erledigt';save()},
+mat:(i,j)=>{const m=S.material.find(x=>x.id===i);m.menge=Math.max(0,m.menge+ +j);save()}};
+A.add=l=>{if(l==='ein'||l==='aus')return ed('buch',null,{typ:l,kat:l==='ein'?'Sonstiges':'Material'});ed(l)};
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(!t)return;const f=A[t.dataset.a];if(f){f(t.dataset.i,t.dataset.j);draw()}});
+draw();
+</script></body></html>
